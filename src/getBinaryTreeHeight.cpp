@@ -1,3 +1,6 @@
+/*
+算法描述：递归获取二叉树高度
+*/
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -8,7 +11,9 @@ using namespace std;
 typedef struct TreeNode {
     TreeNode *lptr;
     TreeNode *rptr;
-    int value;
+    char value;
+
+    TreeNode(): lptr(NULL), rptr(NULL), value('\0') { }
 } TreeNode;
 
 int getTreeHeight(TreeNode *root) {
@@ -65,9 +70,10 @@ int teseCase_tree() {
 }
 
 int main() {
+    cout << "算法：递归获取二叉树高度 " << endl;
     cout << "teseCase_none = " << teseCase_none() << endl;
     cout << "teseCase_one = " << teseCase_one() << endl;
     cout << "teseCase_two = " << teseCase_two() << endl;
-    cout << "teseCase_none = " << teseCase_tree() << endl;
+    cout << "teseCase_tree = " << teseCase_tree() << endl;
     return 0;
 }

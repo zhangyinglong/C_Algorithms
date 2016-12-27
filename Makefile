@@ -1,21 +1,21 @@
-# 二叉树算法
 
-CCFLAG = -Wall
 CXX = g++
+CCFLAG = -Wall -Isrc
+LD = g++
+LDFLAGS = -Wall
 
 SRCS := $(wildcard src/*.cpp)
-BIN_NAME := $(patsubst src/%.cpp,bin/%,$(SRCS))
+TARGETLIST:=$(patsubst src/%.cpp,%,$(SRCS))
 OBJS := $(patsubst %cpp,%o,$(SRCS))  
 
-all: clean $(BIN_NAME)
-
-$(BIN_NAME): $(OBJS)
-	$(CXX) $(CCFLAG) -o $@ $^
+all: clean $(TARGETLIST)
 
 $(OBJS): %.o: %.cpp
-	$(CXX) -c $< -o $@ $(CCFLAG)
+	$(CXX) $(CCFLAG) -c $< -o $@
 
+$(TARGETLIST): $(OBJS)
+	$(LD) $(LDFLAGS) -o $@ src/$@.o
+	
 clean:
-	rm -rf $(BIN_NAME)
-	rm -rf $(OBJS)
+	rm -rf $(OBJS) $(TARGETLIST)
 	
